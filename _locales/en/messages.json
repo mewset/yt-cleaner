@@ -1,0 +1,14 @@
+{
+  "extName": {
+    "message": "YT Cleaner"
+  },
+  "extDescription": {
+    "message": "Strips YouTube down to the video, title, channel and description. Comments, related videos and live chat are never loaded, which saves memory."
+  },
+  "toggleTooltipOn": {
+    "message": "YT Cleaner is on. Click to turn off"
+  },
+  "toggleTooltipOff": {
+    "message": "YT Cleaner is off. Click to turn on"
+  }
+}

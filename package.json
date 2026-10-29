@@ -1,0 +1,15 @@
+{
+  "name": "yt-cleaner",
+  "version": "0.2.0",
+  "private": true,
+  "description": "Chrome-tillägg som rensar YouTube till bara video, titel, kanal och beskrivning.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/smoke.mjs",
+    "icons": "for s in 16 32 48 128; do rsvg-convert -w $s -h $s icons/icon.svg -o icons/icon-$s.png; done",
+    "pack": "mkdir -p dist && rm -f dist/yt-cleaner.zip && zip -r dist/yt-cleaner.zip manifest.json src _locales icons -x icons/icon.svg"
+  },
+  "devDependencies": {
+    "playwright-core": "1.56.0"
+  }
+}

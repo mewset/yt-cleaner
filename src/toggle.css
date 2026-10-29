@@ -1,0 +1,122 @@
+/*
+ * Av/på-knappen i toppraden (toggle.js). Efterliknar YouTubes egna
+ * ikonknappar: 40×40, rund hover-yta, tooltip under knappen.
+ */
+
+/* YouTube exponerar inte längre sina färgvariabler, men sätter [dark] på
+   <html> i mörkt tema. Färgerna är YouTubes egna för respektive tema. */
+#yt-cleaner-toggle {
+  --ytc-text: #0f0f0f;
+  --ytc-background: #fff;
+  --ytc-hover: rgb(0 0 0 / 5%);
+  --ytc-active: rgb(0 0 0 / 10%);
+  --ytc-focus: #065fd4;
+}
+
+html[dark] #yt-cleaner-toggle {
+  --ytc-text: #f1f1f1;
+  --ytc-background: #0f0f0f;
+  --ytc-hover: rgb(255 255 255 / 10%);
+  --ytc-active: rgb(255 255 255 / 20%);
+  --ytc-focus: #3ea6ff;
+}
+
+#yt-cleaner-toggle {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin-left: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ytc-text);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#yt-cleaner-toggle:hover {
+  background: var(--ytc-hover);
+}
+
+#yt-cleaner-toggle:active {
+  background: var(--ytc-active);
+}
+
+#yt-cleaner-toggle:focus-visible {
+  outline: 2px solid var(--ytc-focus);
+  outline-offset: 2px;
+}
+
+/* ── Ikonen ──────────────────────────────────────────────────── */
+
+#yt-cleaner-toggle .ytc-tile {
+  fill: #0b7a55;
+}
+
+#yt-cleaner-toggle .ytc-glyph {
+  fill: #fff;
+}
+
+#yt-cleaner-toggle .ytc-slash,
+#yt-cleaner-toggle .ytc-slash-gap {
+  display: none;
+  fill: none;
+  stroke-linecap: round;
+}
+
+/* Av: bara kontur, överstruken. Gapet ritas i bakgrundsfärgen så att
+   strecket går att skilja från konturen under. */
+#yt-cleaner-toggle[aria-pressed='false'] .ytc-tile {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}
+
+#yt-cleaner-toggle[aria-pressed='false'] .ytc-glyph {
+  fill: currentColor;
+}
+
+#yt-cleaner-toggle[aria-pressed='false'] .ytc-slash,
+#yt-cleaner-toggle[aria-pressed='false'] .ytc-slash-gap {
+  display: inline;
+}
+
+#yt-cleaner-toggle .ytc-slash {
+  stroke: currentColor;
+  stroke-width: 1.75;
+}
+
+#yt-cleaner-toggle .ytc-slash-gap {
+  stroke: var(--ytc-background);
+  stroke-width: 5;
+}
+
+/* ── Tooltip ─────────────────────────────────────────────────── */
+
+/* Högerjusterad: knappen sitter längst ut, en centrerad bubbla skulle hamna utanför skärmen. */
+#yt-cleaner-toggle::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 2200;
+  padding: 8px;
+  border-radius: 4px;
+  background: rgb(97 97 97 / 92%);
+  color: #fff;
+  font: 400 12px/1.3 Roboto, Arial, sans-serif;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.1s;
+}
+
+#yt-cleaner-toggle:is(:hover, :focus-visible)::after {
+  opacity: 1;
+  transition-delay: 0.4s;
+}

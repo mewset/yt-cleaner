@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <!-- Källa för PNG-ikonerna (npm run icons). Samma motiv som knappen i toggle.js. -->
+  <rect x="2.75" y="2.75" width="18.5" height="18.5" rx="5.5" fill="#0b7a55"/>
+  <path fill="#fff" d="M9 7.6v8.8c0 .6.6.9 1.1.6l6.7-4.4c.4-.3.4-.9 0-1.2L10.1 7c-.5-.3-1.1 0-1.1.6Z"/>
+  <path fill="#fff" d="M17.5 3.6l.6 1.8 1.8.6-1.8.6-.6 1.8-.6-1.8-1.8-.6 1.8-.6Z"/>
+</svg>

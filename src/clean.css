@@ -1,0 +1,101 @@
+/*
+ * Reserv för det som datafiltreringen i prune.js inte stoppar, eller om
+ * YouTube ändrar sin datastruktur. Injiceras innan DOM:en byggs.
+ * Allt ligger under ett villkor så att av/på-knappen (toggle.js) kan
+ * stänga av alla regler med ett attribut på <html>.
+ */
+
+html:not([data-yt-cleaner-off]) {
+  /* ── Watch-sidan ───────────────────────────────────────────── */
+
+  /* Kommentarer */
+  ytd-watch-flexy #comments,
+  ytd-watch-flexy ytd-comments,
+  ytd-engagement-panel-section-list-renderer[target-id*='comment'],
+
+  /* Relaterade videor */
+  ytd-watch-flexy #related,
+  ytd-watch-next-secondary-results-renderer,
+
+  /* Livechatt */
+  ytd-watch-flexy #chat-container,
+  ytd-live-chat-frame,
+
+  /* Merch, biljetter, produkter, donationer, infopaneler */
+  ytd-merch-shelf-renderer,
+  ytd-ticket-shelf-renderer,
+  ytd-info-panel-container-renderer,
+  ytd-clarification-renderer,
+  ytd-watch-flexy #ticket-shelf,
+  ytd-watch-flexy #clarify-box,
+  ytd-watch-flexy #shopping-timely-shelf,
+  ytd-watch-flexy #donation-shelf,
+
+  /* Knappraden: dela, ladda ner, klipp, spara, tack, bli medlem, "…".
+     Gilla/ogilla behålls. */
+  ytd-watch-metadata #flexible-item-buttons,
+  ytd-watch-metadata #top-level-buttons-computed > :not(segmented-like-dislike-button-view-model),
+  ytd-watch-metadata #actions ytd-menu-renderer > yt-button-shape#button-shape,
+  ytd-watch-metadata #sponsor-button,
+
+  /* Extra kort i den utfällda beskrivningen */
+  ytd-structured-description-content-renderer ytd-horizontal-card-list-renderer,
+  ytd-structured-description-content-renderer ytd-video-description-infocards-section-renderer,
+  ytd-structured-description-content-renderer ytd-video-description-transcript-section-renderer,
+  ytd-structured-description-content-renderer ytd-video-description-music-section-renderer,
+  ytd-structured-description-content-renderer ytd-video-description-course-section-renderer,
+  ytd-structured-description-content-renderer yt-video-attributes-section-view-model,
+
+  /* Inuti spelaren: slutskärm, kort, autoplay, "fler videor" vid paus */
+  .ytp-ce-element,
+  .ytp-endscreen-content,
+  .ytp-endscreen-previous,
+  .ytp-endscreen-next,
+  .ytp-cards-button,
+  .ytp-cards-teaser,
+  .ytp-autonav-toggle-button-container,
+  .ytp-autonav-endscreen,
+  .ytp-pause-overlay,
+  .ytp-suggested-action,
+  .ytp-featured-product,
+  .iv-branding {
+    display: none !important;
+  }
+
+  /* Högerkolumnen visas bara när den har något man själv valt: en spellista
+     eller en öppnad panel (t.ex. kapitel). Annars får videon hela bredden. */
+  ytd-watch-flexy
+    #secondary:not(
+      :has(
+        ytd-playlist-panel-renderer:not([hidden]),
+        ytd-engagement-panel-section-list-renderer[visibility='ENGAGEMENT_PANEL_VISIBILITY_EXPANDED']
+      )
+    ) {
+    display: none !important;
+  }
+
+  /* ── Överallt ──────────────────────────────────────────────── */
+
+  /* Shorts-hyllor och Shorts-länkar i menyn */
+  ytd-reel-shelf-renderer,
+  ytd-rich-shelf-renderer[is-shorts],
+  ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+  ytd-guide-entry-renderer:has(a[title='Shorts']),
+  ytd-mini-guide-entry-renderer[aria-label='Shorts'],
+
+  /* Toppraden: röstsök, skapa-knapp och notiser (de två sista finns bara inloggad,
+     och då är skapa-knappen den enda ytd-button-renderer i #buttons) */
+  ytd-masthead #voice-search-button,
+  ytd-masthead #buttons:has(ytd-notification-topbar-button-renderer) > ytd-button-renderer,
+  ytd-masthead ytd-notification-topbar-button-renderer,
+
+  /* Annonsplatser på sidan (inte i spelaren) */
+  ytd-ad-slot-renderer,
+  ytd-in-feed-ad-layout-renderer,
+  ytd-banner-promo-renderer,
+  ytd-statement-banner-renderer,
+  #masthead-ad,
+  #player-ads {
+    display: none !important;
+  }
+}
